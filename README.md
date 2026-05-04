@@ -1,25 +1,18 @@
-# SecureAuth - Frontend
+# Secure Auth System — Frontend
 
-Professional React Authentication UI with Premium Design
+React client for the Secure Auth System. Handles login, registration, and a protected dashboard using JWT.
 
-## 🎯 Features
+Part of a full-stack project — see the [Node.js backend](https://github.com/rrobertf/secure-auth-system).
 
-- ✅ Modern Two-Column Design
-- ✅ Login & Registration (Multi-step)
-- ✅ Secure Dashboard with Sidebar
-- ✅ Form Validation
-- ✅ Professional SVG Icons
-- ✅ Dark/Light Mode Support
-- ✅ Responsive Design
+---
 
-## 🛠 Tech Stack
+## Stack
 
-- React 18
-- Axios
-- CSS-in-JS
-- Node.js Backend Integration
+- **React 19**
+- **Axios** for API requests
+- JWT stored in `localStorage`
 
-## 📦 Installation
+## Setup
 
 ```bash
 npm install
@@ -28,21 +21,32 @@ npm start
 
 App runs on `http://localhost:3000`
 
-## 🔗 Backend Integration
-
-Make sure backend is running:
+Make sure the backend is running first:
 
 ```bash
 cd ../secure-auth-system
 npm run dev
 ```
 
-## 📁 Components
+## Structure
 
-- `src/components/Login.js` - Premium login page
-- `src/components/Register.js` - Multi-step registration
-- `src/components/Dashboard.js` - User dashboard with sidebar
+```
+src/
+  components/
+    Login.js      — login form
+    Register.js   — registration form
+    Dashboard.js  — protected user dashboard
+  App.js          — auth state, routing, API calls
+```
 
-## 👨‍💻 Author
+## Auth Flow
 
-Roberto Feliciano - Full Stack Developer
+1. User registers or logs in → backend returns JWT
+2. Token stored in `localStorage`
+3. On load, token is verified against `/api/auth/me`
+4. Dashboard renders if token is valid, redirects to login if not
+
+## Author
+
+**Roberto Feliciano** · CS Student · UIPR Ponce  
+[github.com/rrobertf](https://github.com/rrobertf)
