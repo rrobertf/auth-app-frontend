@@ -19,7 +19,8 @@ function Register({ onRegister, onSwitchToLogin, loading }) {
   const validateStep1 = () => {
     const e = {};
     if (!password) e.password = 'Crea una contraseña segura';
-    else if (password.length < 6) e.password = 'Mínimo 6 caracteres';
+    else if (password.length < 8) e.password = 'Mínimo 8 caracteres';
+    if (new TextEncoder().encode(password).length > 72) e.password = 'Máximo 72 bytes en UTF-8';
     if (!terms) e.terms = 'Debes aceptar los términos';
     return e;
   };
@@ -58,14 +59,14 @@ function Register({ onRegister, onSwitchToLogin, loading }) {
         color: 'var(--fg-muted)',
         marginBottom: 32,
       }}>
-        Crea tu cuenta gratis. Sin tarjeta de crédito. Protección de datos garantizada.
+        Crea tu cuenta gratis. Sin tarjeta de crédito. Proyecto educativo de autenticación.
       </p>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
         {[
-          'Encriptación JWT de grado empresarial',
-          'Autenticación segura de dos pasos',
+          'Tokens JWT firmados',
+          'Contraseñas con hash bcrypt',
           'Protección contra SQL injection',
-          'Soporte prioritario 24/7',
+          'Registro y perfil de usuario',
         ].map((feature) => (
           <li key={feature} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: 'var(--fg)' }}>
             <span style={{
@@ -330,7 +331,7 @@ function TextField({ label, type = 'text', value, onChange, error, autoComplete,
 
   return (
     <div style={{ marginBottom: 18 }}>
-      <label style={{
+      <label htmlFor={name} style={{
         display: 'block',
         fontSize: 12,
         fontWeight: 500,
@@ -361,6 +362,7 @@ function TextField({ label, type = 'text', value, onChange, error, autoComplete,
           </span>
         )}
         <input
+          id={name}
           name={name}
           type={effType}
           value={value}
