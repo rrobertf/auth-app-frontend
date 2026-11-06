@@ -46,7 +46,7 @@ function Login({ onLogin, onSwitchToRegister, loading }) {
         color: 'var(--fg-muted)',
         marginBottom: 40,
       }}>
-        SecureAuth protege tus credenciales con encriptación de nivel empresarial. Inicia sesión para acceder a tu cuenta de forma segura.
+        SecureAuth demuestra autenticación con JWT firmados y contraseñas con hash bcrypt. Inicia sesión para acceder a tu cuenta de forma segura.
       </p>
       <div style={{
         display: 'flex',
@@ -255,7 +255,7 @@ function TextField({ label, type = 'text', value, onChange, error, autoComplete,
 
   return (
     <div style={{ marginBottom: 18 }}>
-      <label style={{
+      <label htmlFor={name} style={{
         display: 'block',
         fontSize: 12,
         fontWeight: 500,
@@ -286,6 +286,7 @@ function TextField({ label, type = 'text', value, onChange, error, autoComplete,
           </span>
         )}
         <input
+          id={name}
           name={name}
           type={effType}
           value={value}
